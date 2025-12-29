@@ -68,6 +68,7 @@
                     b.remove();
                 });
                 document.getElementById("restart").style.display="block";
+
                 var ranking=sessionStorage.getItem("ranking");
                 if(ranking==null){
                     ranking=[];
@@ -181,17 +182,55 @@
                 b.move=setInterval(bullet_move,10,b);
              }
              
+             function show_ranking(){
+                var ranking=sessionStorage.getItem("ranking");
+                if(ranking){
+                    var data=Array.from(JSON.parse(ranking));
+                    data.forEach((x)=>{
+                        var li=document.createElement("li");
+                        li.innerHTML=`<span style="width:150px">${x.name}</span> <span>用${x.time}秒</span> <span>得${x.score}分</span>`;
+                        ducunent.getElementById("ranking").appendChild(li);
+                    });
+                }
+
+             }
+             function do_ranking(){
+                var ranking=sessionStorage.getItem("ranking");
+                if(ranking==null){
+                    ranking=[];
+                    ranking.push({"name":prompt("請輸入你的名稱:"),"score":game_score,"time":game_time});
+                    sessionStorage.setItem("ranking",JSON.stringify(ranking));
+                }else {
+                    var data=Array.from(JSPN.parse(ranking));
+                    if(data.length<5){
+                        data.push({"name":prompt("請輸入你的名稱:"),"score":game_score,"time":game_time});
+                    }else if(game_score>data[4].score){
+                        data.pop();
+                        data.push({"name":prompt("請輸入你的名稱:"),"score":game_score,"time":game_time});
+                    }
+                    data.sort((a,b)=>{
+                        return b.score-a.score;
+                    });
+                    sessionStorage.setItem("ranking",JSON.stringify(data));
+                }
+             }
         
         </script>
     </head>
     <body onload="game_init()" onkeydown="mykeydown()" onkeyup="mykeyup()";>
-         <div id="status" style="width: 800px;">
+         <div style="display:inline-block; width: 800px;">
+            <div id="status">
             <span>得分:<span id="score">0</span>分</span>
-            <span>時間:<span id="game_time">0</span>秒</span>
+            <span style="float:right;">時間:<span id="game_time">0</span>秒</span>
         </div>
         <div id="spaces">
             <div id="ship"></div>
         </div>
         <button id="restart" onclick="game_init();">重新開始</button>
+        </div>
+        <div style="display:inline-block;height:820px;vertical-align: bottom;margin-left:10px;">
+            <div style="font-size:2em; font-weight:bolder;">排行榜</div>
+        </div>
+    
     </body>
 </html>
