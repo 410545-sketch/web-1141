@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>簡易問答遊戲</title>
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+                background-color: #f0f4ff;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                height: 0 5px 10px
+                rgba(0,0,0,0.2);
+            }
+            button{
+                width: 100%;
+                padding: 10px;
+                margin-top: 8px;
+                border:none;
+                border-radius: 6px;
+                background-color: #5b6dff;
+                color:white;
+                font-size: 14px;
+                cursor:pointer;
+            }
+            button:hover{
+                background-color: #3f4fe0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+        <h2 id="qNum"></h2>
+        <p id="question"></p>
+        <button onclick="answer(0)"id="b0"></button>
+        <button onclick="answer(1)"id="b1"></button>
+        <button onclick="answer(2)"id="b2"></button>
+        <P id="msg"></P>
+    </div>
+    <script>
+        const quiz=[
+            {q:"html 是用來?",a:["樣式","結構","動畫"],c:1},
+            {q:"css 是用來?",a:["外觀","資料庫","邏輯"],c:0},
+            {q:"哪個是HTML標籤?",a:["<body>","<bold>","<text>"],c:0},
+            {q:"class用甚麼選?",a:[".","#","*"],c:0},
+            {q:"哪個讓角變圓?",a:["margin","border-radius","padding"],c:1},
+            {q:"hover是?",a:["滑鼠移上","點擊","離開"],c:0},
+            {q:"flex是?",a:["排版","顏色","文字"],c:0},
+            {q:"css檔名是?",a:["a.html","a.js","a.css"],c:2},
+            {q:"button是?",a:["圖片","按鈕","文字"],c:1},
+            {q:"js做甚麼?",a:["排版","互動","顏色"],c:ㄅ},
+        ];
+    </script>
+    </body>
+</html>
