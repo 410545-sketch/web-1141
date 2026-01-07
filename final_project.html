@@ -49,6 +49,35 @@
             {q:"button是?",a:["圖片","按鈕","文字"],c:1},
             {q:"js做甚麼?",a:["排版","互動","顏色"],c:ㄅ},
         ];
+        quiz.sort(()=>Math.random()-0.5);
+        let i=0;
+        let score=0;
+        function show(){
+            document.getElementById("qNum").innerText=`第 ${i+1}題/10題`;
+            document.getElementById("question").innerText=quiz[i].q;
+            document.getElementById("b0").innerText=quiz[i].a[0];
+            document.getElementById("b1").innerText=quiz[i].a[1];
+            document.getElementById("b2").innerText=quiz[i].a[2];
+            document.getElementById("msg").innerText="";
+        }
+        function answer(x){
+            if(x===quiz[i].c){
+                score++;
+                document.getElementById("msg").innerText="答對!";
+            }else{
+                document.getElementById("msg").innerText="答錯!";
+            }
+            i++;
+            setTimeout(()=>{
+                if(i<quiz.length){
+                    show();
+                }else{
+                 document.querySelector(",box").innerHTML=`<h2>結束</h2>
+                 <p>得分:${score}/10</p>`;
+                }
+            },500);
+        }
+        show();
     </script>
     </body>
 </html>
