@@ -8,7 +8,14 @@
                 display:flex;
                 justify-content: center;
                 align-items: center;
-                height: 0 5px 10px
+                height: 100vh;
+                margin:0;
+            }
+            .box{
+                background:white;
+                padding:20px;
+                width:300px;
+                border-radius: 0 5px 10px
                 rgba(0,0,0,0.2);
             }
             button{
@@ -25,15 +32,19 @@
             button:hover{
                 background-color: #3f4fe0;
             }
+            #msg{
+                margin-top:10px;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
         <div class="box">
         <h2 id="qNum"></h2>
         <p id="question"></p>
-        <button onclick="answer(0)"id="b0"></button>
-        <button onclick="answer(1)"id="b1"></button>
-        <button onclick="answer(2)"id="b2"></button>
+        <button id="b0"onclick="answer(0)"></button>
+        <button id="b1"onclick="answer(1)"></button>
+        <button id="b2"onclick="answer(2)"></button>
         <P id="msg"></P>
     </div>
     <script>
@@ -72,7 +83,7 @@
                 if(i<quiz.length){
                     show();
                 }else{
-                 document.querySelector(",box").innerHTML=`<h2>結束</h2>
+                 document.querySelector(".box").innerHTML=`<h2>結束</h2>
                  <p>得分:${score}/10</p>`;
                 }
             },500);
