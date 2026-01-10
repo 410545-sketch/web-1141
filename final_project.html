@@ -1,5 +1,6 @@
  <html>
     <head>
+        <meta charset="UTF-8">
         <title>簡易問答遊戲</title>
         <style>
             body{
@@ -45,9 +46,9 @@
         <div class="card">     
         <h3 id="number"></h3>
         <p id="title"></p>
-        <button id="btn0"></button>
-        <button id="btn1"></button>
-        <button id="btn2"></button>
+        <button id="btn0" onclick="checkAnswer(0)"></button>
+        <button id="btn1" onclick="checkAnswer(1)"></button>
+        <button id="btn2" onclick="checkAnswer(2)"></button>
         
        
         <div id="result"></div>
@@ -65,15 +66,14 @@
             {title:"button是?",options:["圖片","按鈕","文字"],answer:1},
             {title:"js做甚麼?",options:["排版","互動","顏色"],answer:1},
         ];
-        question.sort(() =>Math.random()-0.5);
+        questions.sort(() =>Math.random()-0.5);
         let index=0;
         let score=0;
         function showQuestion(){
             document.getElementById("number").textContent="第"+(index+1)+"題/10題";
-            document.getElementById("title").textContent=question[index].title;
-            document.getElementById("btn0").textContent=question[index].options[0];
-            document.getElementById("btn1").textContent=question[index].options[1];
-            document.getElementById("btn2").textContent=question[index].options[2];
+            document.getElementById("title").textContent=questions[index].options[0];
+            document.getElementById("btn1").textContent=questions[index].options[1];
+            document.getElementById("btn2").textContent=questions[index].options[2];
             document.getElementById("result").textContent="";
         }
         function checkAnswer(choice){
@@ -92,7 +92,7 @@
                  <p>你的得分:${score}/10</p>
                  <button onclick="location.reload()">再玩一次</button>`;
                 }
-            },0);
+            },800);
         }
         showQuestion();
     </script>
