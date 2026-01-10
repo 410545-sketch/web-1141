@@ -1,101 +1,116 @@
- <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>簡易問答遊戲</title>
-        <style>
-            body{
-                font-family: Arial, sans-serif;
-                background-color: #eef2ff;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin:0;
-            }
-            .card{
-                background:white;
-                padding:20px;
-                width:320px;
-                border-radius: 12px;
-                text-align: center;
-                box-shadow: 0 4px 10px
-                rgba(0,0,0,0.2);
-            }
-            button{
-                width: 100%;
-                padding: 10px;
-                margin-top: 10px;
-                border:none;
-                border-radius: 6px;
-                background-color: #4f63ff;
-                color:white;
-                font-size: 14px;
-                cursor:pointer;
-            }
-            button:hover{
-                background-color: #3949d6;
-            }
-            #result{
-                margin-top:12px;
-                font-weight: bold;
-                height: 20px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="card">     
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> <title>簡易問答遊戲</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            width: 320px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #4f63ff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3949d6;
+        }
+        #result {
+            margin-top: 12px;
+            font-weight: bold;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">     
         <h3 id="number"></h3>
         <p id="title"></p>
         <button id="btn0" onclick="checkAnswer(0)"></button>
         <button id="btn1" onclick="checkAnswer(1)"></button>
         <button id="btn2" onclick="checkAnswer(2)"></button>
         
-       
         <div id="result"></div>
     </div>
+
     <script>
-        const questions=[
-            {title:"html 是用來做甚麼?",options:["樣式","結構","動畫"],answer:1},
-            {title:"css 是用來?",options:["外觀","資料庫","邏輯"],answer:0},
-            {title:"哪個是HTML標籤?",options:["<body>","<bold>","<text>"],answer:0},
-            {title:"class用甚麼選?",options:[".","#","*"],answer:0},
-            {title:"哪個讓角變圓?",options:["margin","border-radius","padding"],answer:1},
-            {title:"hover是?",options:["滑鼠移上","點擊","離開"],answer:0},
-            {title:"flex是?",options:["排版","顏色","文字"],answer:0},
-            {title:"css檔名是?",options:["a.html","a.js","a.css"],answer:2},
-            {title:"button是?",options:["圖片","按鈕","文字"],answer:1},
-            {title:"js做甚麼?",options:["排版","互動","顏色"],answer:1},
+        const questions = [
+            {title:"html 是用來做甚麼?", options:["樣式","結構","動畫"], answer:1},
+            {title:"css 是用來?", options:["外觀","資料庫","邏輯"], answer:0},
+            {title:"哪個是HTML標籤?", options:["<body>","<bold>","<text>"], answer:0},
+            {title:"class用甚麼選?", options:[".","#","*"], answer:0},
+            {title:"哪個讓角變圓?", options:["margin","border-radius","padding"], answer:1},
+            {title:"hover是?", options:["滑鼠移上","點擊","離開"], answer:0},
+            {title:"flex是?", options:["排版","顏色","文字"], answer:0},
+            {title:"css檔名是?", options:["a.html","a.js","a.css"], answer:2},
+            {title:"button是?", options:["圖片","按鈕","文字"], answer:1},
+            {title:"js做甚麼?", options:["排版","互動","顏色"], answer:1},
         ];
-        questions.sort(() =>Math.random()-0.5);
-        let index=0;
-        let score=0;
-        function showQuestion(){
-            document.getElementById("number").textContent="第"+(index+1)+"題/10題";
-            document.getElementById("title").textContent=questions[index].options[0];
-            document.getElementById("btn1").textContent=questions[index].options[1];
-            document.getElementById("btn2").textContent=questions[index].options[2];
-            document.getElementById("result").textContent="";
+
+        // 修正：統一變數名稱為 questions
+        questions.sort(() => Math.random() - 0.5);
+
+        let index = 0;
+        let score = 0;
+
+        function showQuestion() {
+            // 修正：統一變數名稱為 questions
+            document.getElementById("number").textContent = "第" + (index + 1) + "題/10題";
+            document.getElementById("title").textContent = questions[index].title;
+            document.getElementById("btn0").textContent = questions[index].options[0];
+            document.getElementById("btn1").textContent = questions[index].options[1];
+            document.getElementById("btn2").textContent = questions[index].options[2];
+            document.getElementById("result").textContent = "";
         }
-        function checkAnswer(choice){
-            if(choice===questions[index].answer){
+
+        function checkAnswer(choice) {
+            // 判斷答案
+            if (choice === questions[index].answer) {
                 score++;
-                document.getElementById("result").textContent="答對!";
-            }else{
-                document.getElementById("result").textContent="答錯!";
+                document.getElementById("result").textContent = "答對!";
+                document.getElementById("result").style.color = "green";
+            } else {
+                document.getElementById("result").textContent = "答錯!";
+                document.getElementById("result").style.color = "red";
             }
+
             index++;
-            setTimeout(()=>{
-                if(index<question.length){
+
+            // 修正：將延遲時間設定為 800ms
+            setTimeout(() => {
+                if (index < questions.length) {
                     showQuestion();
-                }else{
-                 document.querySelector(".card").innerHTML=`<h2>遊戲結束</h2>
-                 <p>你的得分:${score}/10</p>
-                 <button onclick="location.reload()">再玩一次</button>`;
+                } else {
+                    document.querySelector(".card").innerHTML = `
+                        <h2>遊戲結束</h2>
+                        <p>你的得分: ${score} / ${questions.length}</p>
+                        <button onclick="location.reload()">再玩一次</button>
+                    `;
                 }
-            },800);
+            }, 800);
         }
+
+        // 初始化
         showQuestion();
     </script>
-    
-    </body>
+</body>
 </html>
